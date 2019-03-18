@@ -27,6 +27,7 @@ class App extends Component {
      <div>
        {/*<Title/>*/}
        <Form getWeather={this.getWeather}/>
+       <h1>hrp</h1>
        {/*<Weather/>*/}
       </div>
     );

@@ -8,6 +8,8 @@ class Form  extends Component {
                 <input type="text" name="country" placeholder="country.."/>
                 <button>Get weather</button>
                 <h1>hello</h1>
+                <h2>hello</h2>
+
 
 
             </form>

@@ -36,17 +36,28 @@ class App extends Component {
     const  country = e.target.elements.country.value;
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${API_KEY}`);
     const data = await api_call.json();
-    console.log(data);
-
-    //defining the state
-    this.setState({
-        temperature: data.main.temp-273,
-        city: data.name,
-        country: data.sys.country,
-        humidity: data.main.humidity,
-        description: data.weather[0].description,
-        error: ""
-    });
+    if(city && country){
+        console.log(data);
+        //defining the state
+        this.setState({
+            temperature: data.main.temp,
+            city: data.name,
+            country: data.sys.country,
+            humidity: data.main.humidity,
+            description: data.weather[0].description,
+            error: ""
+        });
+    }
+    else {
+        this.setState({
+            temperature: undefined,
+            city: undefined,
+            country: undefined,
+            humidity: undefined,
+            description: undefined,
+            error: "please enter the value !!"
+        });
+    }
   };
 
   render() {
@@ -61,6 +72,7 @@ class App extends Component {
        country={this.state.country}
        description={this.state.description}
        humidity={this.state.humidity}
+       error = {this.state.error}
        />
       </div>
     );

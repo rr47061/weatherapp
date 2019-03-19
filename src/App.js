@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-//import Title from './components/title';
+import Title from './components/title';
 import Form from './components/form';
 import Weather from './components/weather';
+import {Cell, Grid} from "react-mdl";
+import {Container, Image} from "react-bootstrap";
 
 const API_KEY =  '575d1618c948f762a2f9a2dda2538007';
 
@@ -40,7 +42,7 @@ class App extends Component {
         console.log(data);
         //defining the state
         this.setState({
-            temperature: data.main.temp,
+            temperature: data.main.temp-273.15,
             city: data.name,
             country: data.sys.country,
             humidity: data.main.humidity,
@@ -62,8 +64,10 @@ class App extends Component {
 
   render() {
     return (
-     <div>
-       {/*<Title/>*/}
+     <Container className="container-fluid" style={{background:"black", width: "70%", height: "70%" , margin: "auto"}}>
+         <Title />
+
+
        <Form getWeather={this.getWeather}/>
        {/*sending data to the weather class*/}
        <Weather
@@ -74,7 +78,7 @@ class App extends Component {
        humidity={this.state.humidity}
        error = {this.state.error}
        />
-      </div>
+     </Container>
     );
   }
 }
